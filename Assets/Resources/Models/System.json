@@ -30,10 +30,7 @@
         },
         {
             "name": "Earth",
-            "mass": {
-                "significand": 5.97237,
-                "exponent": 24
-            },
+            "mass": 5972370000000000000000000,
             "orbit": {
                 "semiMajorAxis": 149598023000,
                 "eccentricity": 0.0167086,
@@ -45,10 +42,7 @@
             "satellites": [
                 {
                     "name": "Moon",
-                    "mass": {
-                        "significand": 7.342,
-                        "exponent": 22
-                    },
+                    "mass": 73420000000000000000000,
                     "orbit": {
                         "semiMajorAxis": 384399000,
                         "eccentricity": 0.0549,

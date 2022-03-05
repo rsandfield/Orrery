@@ -8,23 +8,19 @@ public class OrbitModel
     public Body primary;
     public float semiMajorAxis;
     public float eccentricity;
+    public float period { get => Mathf.Pow(semiMajorAxis, 0.5f); }
 
-    public Vector3 GetPositionAt(float time)
+    public Vector3 GetPositionAt(float time, ViewMode mode)
     {
-        return GetPositionAt(time, semiMajorAxis);
-    }
-
-    public Vector3 GetLogPositionAt(float time)
-    {
-        return GetPositionAt(time, Mathf.Log(semiMajorAxis));
+        return GetPositionAt(time, mode.scaleValue(semiMajorAxis));
     }
 
     Vector3 GetPositionAt(float time, float radius)
     {
         return new Vector3(
-            Mathf.Cos(time) * radius,
+            Mathf.Cos(time / period) * radius,
             0,
-            Mathf.Sin(time) * radius
+            Mathf.Sin(time / period) * radius
         );
     }
 }

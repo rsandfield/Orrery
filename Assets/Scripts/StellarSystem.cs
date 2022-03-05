@@ -5,12 +5,16 @@ using UnityEngine;
 public class StellarSystem : MonoBehaviour
 {
     public TextAsset system;
+    public ViewMode mode = ViewMode.Log;
+    Body root;
+    public float time;
+    public float speed = 1000;
     
     void Start()
     {
-        BodyModel root = JsonUtility.FromJson<BodyModel>(system.text);
-        Body sun = Body.Instantiate(root);
-        InitializeSubsystem(sun, root);
+        BodyModel rootModel = JsonUtility.FromJson<BodyModel>(system.text);
+        root = Body.Instantiate(rootModel);
+        InitializeSubsystem(root, rootModel);
     }
 
     void InitializeSubsystem(Body primary, BodyModel primaryModel)
@@ -21,5 +25,26 @@ public class StellarSystem : MonoBehaviour
             Body body = Body.Instantiate(satellite);
             InitializeSubsystem(body, satellite);
         }
+    }
+
+    public void ChangeViewMode(int mode)
+    {
+        this.mode = (ViewMode) mode;
+        ScaleSubsystem(root);
+    }
+
+    void ScaleSubsystem(Body primary)
+    {
+        primary.SetScaling(mode);
+        foreach(Body satellite in primary.satellites)
+        {
+            ScaleSubsystem(satellite);
+        }
+    }
+
+    void Update()
+    {
+        time += Time.deltaTime * speed;
+        root.SetPosition(time, mode);
     }
 }

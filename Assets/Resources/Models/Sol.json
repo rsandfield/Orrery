@@ -1,0 +1,125 @@
+{
+    "name": "Sol",
+    "mass":  1988470000000000000000000000000,
+    "satellites": [
+        {
+            "name": "Mercury",
+            "mass": 330110000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 57909050000,
+                "eccentricity": 0.205630,
+                "meanAnomaly": 174.796,
+                "inclination": 6.35,
+                "ascendingNode": 48.331,
+                "perihelion": 29.124
+            },
+            "satellites": []
+        },
+        {
+            "name": "Venus",
+            "mass": 4867500000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 108208000000,
+                "eccentricity": 0.006772,
+                "meanAnomaly": 50.115,
+                "inclination": 2.15,
+                "ascendingNode": 76.680,
+                "perihelion": 54.884
+            },
+            "satellites": []
+        },
+        {
+            "name": "Earth",
+            "mass": 5972370000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 149598023000,
+                "eccentricity": 0.0167086,
+                "meanAnomaly": 358.617,
+                "inclination": 1.57869,
+                "ascendingNode": -11.26064,
+                "perihelion": 114.20783
+            },
+            "satellites": [
+                {
+                    "name": "Moon",
+                    "mass": 73420000000000000000000,
+                    "orbit": {
+                        "semiMajorAxis": 384748000,
+                        "eccentricity": 0.0549,
+                        "meanAnomaly": 0,
+                        "inclination": 5.145,
+                        "ascendingNode": 0,
+                        "perihelion": 0
+                    },
+                    "satellites": []
+                }
+            ]
+        },
+        {
+            "name": "Mars",
+            "mass": 641710000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 227939200000,
+                "eccentricity": 0.0934,
+                "meanAnomaly": 19.412,
+                "inclination": 1.63,
+                "ascendingNode": 49.558,
+                "perihelion": 286.502
+            },
+            "satellites": [
+                {
+                    "name": "Phobos",
+                    "mass": 10659000000000000,
+                    "orbit": {
+                        "semiMajorAxis": 9376000,
+                        "eccentricity": 0.0151,
+                        "meanAnomaly": 0,
+                        "inclination": 0.046,
+                        "ascendingNode": 0,
+                        "perihelion": 0
+                    },
+                    "satellites": []
+                },
+                {
+                    "name": "Phobos",
+                    "mass": 10659000000000000,
+                    "orbit": {
+                        "semiMajorAxis": 23463200,
+                        "eccentricity": 0.00033,
+                        "meanAnomaly": 0,
+                        "inclination": 1.791,
+                        "ascendingNode": 0,
+                        "perihelion": 0
+                    },
+                    "satellites": []
+                }
+            ]
+        },
+        {
+            "name": "Jupiter",
+            "mass": 1898200000000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 778570000000,
+                "eccentricity": 0.0489,
+                "meanAnomaly": 20.02,
+                "inclination": 0.32,
+                "ascendingNode": 100.464,
+                "perihelion": 273.867
+            },
+            "satellites": []
+        },
+        {
+            "name": "Saturn",
+            "mass": 568340000000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 1433530000000,
+                "eccentricity": 0.0565,
+                "meanAnomaly": 317,
+                "inclination": 0.93,
+                "ascendingNode": 113.665,
+                "perihelion": 339.392
+            },
+            "satellites": []
+        }
+    ]
+}

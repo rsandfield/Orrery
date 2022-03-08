@@ -11,7 +11,7 @@
                 "meanAnomaly": 174.796,
                 "inclination": 6.35,
                 "ascendingNode": 48.331,
-                "perihelion": 29.124
+                "periapsis": 29.124
             },
             "satellites": []
         },
@@ -24,7 +24,7 @@
                 "meanAnomaly": 50.115,
                 "inclination": 2.15,
                 "ascendingNode": 76.680,
-                "perihelion": 54.884
+                "periapsis": 54.884
             },
             "satellites": []
         },
@@ -37,19 +37,19 @@
                 "meanAnomaly": 358.617,
                 "inclination": 1.57869,
                 "ascendingNode": -11.26064,
-                "perihelion": 114.20783
+                "periapsis": 114.20783
             },
             "satellites": [
                 {
                     "name": "Moon",
                     "mass": 73420000000000000000000,
                     "orbit": {
-                        "semiMajorAxis": 384399000,
+                        "semiMajorAxis": 3.84399e8,
                         "eccentricity": 0.0549,
                         "meanAnomaly": 0,
                         "inclination": 5.145,
                         "ascendingNode": 0,
-                        "perihelion": 0
+                        "periapsis": 0
                     },
                     "satellites": []
                 }

@@ -71,12 +71,6 @@ public class Body : MonoBehaviour
         return orbit.GetPostitionAt(time);
     }
 
-    public Vector3 GetLogPositionAt(float time)
-    {
-        if(primary == null) return Vector3.zero;
-        return orbit.GetLogPositionAt(time);   
-    }
-
     public void SetPosition(float time)
     {
         if(primary == null) return;

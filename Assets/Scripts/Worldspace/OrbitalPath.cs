@@ -25,7 +25,7 @@ public class OrbitalPath : MonoBehaviour
         List<Vector3> positions = new List<Vector3>();
         for(int i = 0; i < count; i++)
         {
-            positions.Add(model.GetPositionAt(i*seg));
+            positions.Add(model.GetRelativePositionAt(i*seg));
         }
 
         lineRenderer.positionCount = count;
@@ -34,11 +34,6 @@ public class OrbitalPath : MonoBehaviour
 
     public Vector3 GetPostitionAt(float time)
     {
-        return model.GetPositionAt(time);
-    }
-
-    public Vector3 GetLogPositionAt(float time)
-    {
-        return model.GetLogPositionAt(time);
+        return model.GetRelativePositionAt(time);
     }
 }

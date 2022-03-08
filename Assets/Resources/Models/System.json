@@ -1,0 +1,59 @@
+{
+    "name": "Sol",
+    "mass":  1988470000000000000000000000000,
+    "satellites": [
+        {
+            "name": "Mercury",
+            "mass": 330110000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 57909050000,
+                "eccentricity": 0.205630,
+                "meanAnomaly": 174.796,
+                "inclination": 6.35,
+                "ascendingNode": 48.331,
+                "periapsis": 29.124
+            },
+            "satellites": []
+        },
+        {
+            "name": "Venus",
+            "mass": 4867500000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 108208000000,
+                "eccentricity": 0.006772,
+                "meanAnomaly": 50.115,
+                "inclination": 2.15,
+                "ascendingNode": 76.680,
+                "periapsis": 54.884
+            },
+            "satellites": []
+        },
+        {
+            "name": "Earth",
+            "mass": 5972370000000000000000000,
+            "orbit": {
+                "semiMajorAxis": 149598023000,
+                "eccentricity": 0.0167086,
+                "meanAnomaly": 358.617,
+                "inclination": 1.57869,
+                "ascendingNode": -11.26064,
+                "periapsis": 114.20783
+            },
+            "satellites": [
+                {
+                    "name": "Moon",
+                    "mass": 73420000000000000000000,
+                    "orbit": {
+                        "semiMajorAxis": 3.84399e8,
+                        "eccentricity": 0.0549,
+                        "meanAnomaly": 0,
+                        "inclination": 5.145,
+                        "ascendingNode": 0,
+                        "periapsis": 0
+                    },
+                    "satellites": []
+                }
+            ]
+        }
+    ]
+}

@@ -15,7 +15,7 @@ public class OrbitalPath : MonoBehaviour
         Redraw(32, ViewMode.Log);
     }
 
-    public PointMass GetPrimary()
+    public Body GetPrimary()
     {
         return model.primary;
     }

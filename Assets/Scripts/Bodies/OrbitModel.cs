@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class OrbitModel
 {
-    public Body primary;
+    public PointMass primary;
     public float semiMajorAxis;
     public float eccentricity;
     public float period { get => Mathf.Pow(semiMajorAxis, 0.5f); }

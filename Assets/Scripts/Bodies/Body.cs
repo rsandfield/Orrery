@@ -2,54 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Body : Barycenter
+public class Body : MonoBehaviour
 {
     [SerializeField]
     GameObject bodyMesh;
 
     [SerializeField]
+    OrbitalPath orbit;
+
+    [SerializeField]
     GameObject hillSphereMesh;
 
-    public Body primary { get; protected set; }
-    [field: SerializeField]
-    public float mass { get; protected set; }
-    [field: SerializeField]
-    public float radius { get; protected set; }
-    [field: SerializeField]
-    public float hillRadius { get; protected set; }
+    public PointMass model { get; protected set; }
+    public List<Body> satellites = new List<Body>();
 
-    public static Body Instantiate(BodyModel model)
+    public static Body Instantiate(BodyModel body, OrbitModel orbit)
     {
-        return Instantiate(model.name, model.mass, model.orbit);
+        return Instantiate(new PointMass(body, orbit));
     }
 
-    public static Body Instantiate(string name, float mass, OrbitModel orbitModel = null)
+    public static Body Instantiate(PointMass model)
     {
         Body body = (GameObject.Instantiate(Resources.Load("Prefabs/Body")) as GameObject).GetComponent<Body>();
 
-        body.gameObject.name = name;
-        body.name = name;
-        body.mass = mass;
-        body.radius = Mathf.Pow(mass, 1f/3f);
+        body.name = model.name;
+        body.model = model;
 
-        body.InitializeOrbit(orbitModel);
-        body.InitializeHillSphere(orbitModel);
+        body.InitializeOrbit();
 
         return body;
     }
 
-    void InitializeOrbit(OrbitModel orbitModel)
+    void InitializeOrbit()
     {
-        if(orbitModel == null || orbitModel.primary == null)
+        if(model == null || model.orbit == null || model.orbit.primary == null)
         {
             orbit.gameObject.SetActive(false);
-            primary = null;
         }
         else
         {
-            orbit.Initialize(orbitModel);
-            primary = orbit.GetPrimary();
-            primary.AddSatellite(this);
+            orbit.Initialize(model.orbit);
         }
     }
 
@@ -61,38 +53,28 @@ public class Body : Barycenter
             return;
         }
 
-        hillRadius = model.semiMajorAxis * Mathf.Pow(mass / (3 * model.primary.mass), 1/3.0f);
-
         Mesh mesh = hillSphereMesh.GetComponent<MeshFilter>().mesh;
-        Vector3[] normals = mesh.normals;
-        for(int i = 0; i < normals.Length; i++)
-        {
-            normals[i] = -normals[i];
-        }
-        mesh.normals = normals;
-
-        int[] tris = mesh.GetTriangles(0);
-        for(int i = 0; i < tris.Length; i += 3)
-        {
-            int temp = tris[i];
-            tris[i] = tris[i + 1];
-            tris[i + 1] = temp;
-        }
-        mesh.SetTriangles(tris, 0);
+        // mesh.InvertNormals();
     }
 
     public void SetScaling(ViewMode mode)
     {
         orbit.Redraw(32, mode);
-        float planetaryRadius = mode.scaleValue(radius);
-        bodyMesh.transform.localScale = new Vector3(planetaryRadius, planetaryRadius, planetaryRadius);
+
+        if(model.body != null)
+        {
+            float pr = mode.scaleValue(model.body.radius);
+            bodyMesh.transform.localScale = new Vector3(pr, pr, pr);
+        }
         
-        if(hillRadius == 0) return;
-        float hillSphereRadius = mode.scaleValue(hillRadius) * 2;
-        hillSphereMesh.transform.localScale = new Vector3(hillSphereRadius, hillSphereRadius, hillSphereRadius);
+        if(model.hillRadius > 0)
+        {
+            float hsr = mode.scaleValue(model.hillRadius) * 2;
+            hillSphereMesh.transform.localScale = new Vector3(hsr, hsr, hsr);
+        }
     }
 
-    public void AddSatellite(Body body)
+    public void AddSatellite(PointMass body)
     {
         satellites.Add(body);
         body.transform.parent = satelliteHolder;
@@ -112,7 +94,7 @@ public class Body : Barycenter
             transform.localPosition = position;
             orbit.transform.localPosition = -position;
         }
-        foreach(Body satellite in satellites)
+        foreach(PointMass satellite in satellites)
         {
             satellite.SetPosition(time, mode);
         }

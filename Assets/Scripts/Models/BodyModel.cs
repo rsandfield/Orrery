@@ -4,13 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class BodyModel : BarycenterModel
 {
-    public float radius { get; protected set; }
+    public float radius;
+    public MassFraction massFractions;
 
-    public BodyModel(string name, float mass, OrbitModel orbit = null, BarycenterModel[] satellites = null) : base(name)
+    public BodyModel(string name, MassFraction mass, OrbitModel orbit = null, BarycenterModel[] satellites = null) : base(name)
     {   
         this.orbit = orbit;
-        this.mass = mass;
-        this.radius = Mathf.Pow(mass, 1f/3f);
+        this.massFractions = mass;
+        this.mass = mass.total;
+        this.radius = Mathf.Pow(mass.total, 1f/3f);
         this.satellites = satellites;
     }
 }

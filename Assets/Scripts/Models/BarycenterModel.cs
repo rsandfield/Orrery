@@ -1,9 +1,10 @@
+[System.Serializable]
 public class BarycenterModel
 {
-    public string name { get; protected set; }
-    public float mass { get; protected set; }
-    public float hillRadius { get; protected set; }
-    public OrbitModel orbit { get; protected set; }
+    public string name;
+    public float mass;
+    public float hillRadius;
+    public OrbitModel orbit;
     public BarycenterModel[] satellites;
 
     protected BarycenterModel(string name)

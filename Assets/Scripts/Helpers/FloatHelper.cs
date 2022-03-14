@@ -8,7 +8,7 @@ public static class FloatHelper
         {
             float temp = min;
             min = max;
-            max = min;
+            max = temp;
         }
 
         float range = max - min;

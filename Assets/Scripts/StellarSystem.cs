@@ -21,7 +21,7 @@ public class StellarSystem : MonoBehaviour
     {
         foreach(BodyModel satellite in primaryModel.satellites)
         {
-            satellite.orbit.primary = primary;
+            satellite.orbit.primary = primaryModel;
             Body body = Body.Instantiate(satellite);
             InitializeSubsystem(body, satellite);
         }

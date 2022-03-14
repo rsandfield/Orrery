@@ -6,6 +6,8 @@ public class Body : MonoBehaviour
 {
     [SerializeField]
     GameObject bodyMesh;
+    [SerializeField]
+    Transform satelliteHolder;
 
     [SerializeField]
     OrbitalPath orbit;
@@ -13,15 +15,10 @@ public class Body : MonoBehaviour
     [SerializeField]
     GameObject hillSphereMesh;
 
-    public PointMass model { get; protected set; }
+    public BodyModel model { get; protected set; }
     public List<Body> satellites = new List<Body>();
 
-    public static Body Instantiate(BodyModel body, OrbitModel orbit)
-    {
-        return Instantiate(new PointMass(body, orbit));
-    }
-
-    public static Body Instantiate(PointMass model)
+    public static Body Instantiate(BodyModel model)
     {
         Body body = (GameObject.Instantiate(Resources.Load("Prefabs/Body")) as GameObject).GetComponent<Body>();
 
@@ -61,9 +58,9 @@ public class Body : MonoBehaviour
     {
         orbit.Redraw(32, mode);
 
-        if(model.body != null)
+        if(model != null)
         {
-            float pr = mode.scaleValue(model.body.radius);
+            float pr = mode.scaleValue(model.radius);
             bodyMesh.transform.localScale = new Vector3(pr, pr, pr);
         }
         
@@ -74,7 +71,7 @@ public class Body : MonoBehaviour
         }
     }
 
-    public void AddSatellite(PointMass body)
+    public void AddSatellite(Body body)
     {
         satellites.Add(body);
         body.transform.parent = satelliteHolder;
@@ -82,19 +79,19 @@ public class Body : MonoBehaviour
 
     public Vector3 GetPositionAt(float time, ViewMode mode)
     {
-        if(primary == null) return Vector3.zero;
+        if(orbit.model.primary == null) return Vector3.zero;
         return orbit.GetPostitionAt(time, mode);
     }
 
     public void SetPosition(float time, ViewMode mode)
     {
-        if(primary != null) 
+        if(orbit.model.primary != null) 
         {
-            Vector3 position = GetPositionAt(time, mode);
+            Vector3 position = orbit.GetPostitionAt(time, mode);
             transform.localPosition = position;
             orbit.transform.localPosition = -position;
         }
-        foreach(PointMass satellite in satellites)
+        foreach(Body satellite in satellites)
         {
             satellite.SetPosition(time, mode);
         }

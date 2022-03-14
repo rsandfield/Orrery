@@ -1,13 +1,13 @@
 [System.Serializable]
 public struct MassFraction
 {
-    public float mass;
+    public float total;
     public float volitileFraction;
     public float lithicFraction;
     public float metallicFraction;
-    public float volitileMass { get => mass * volitileFraction; }
-    public float lithicMass { get => mass * lithicFraction; }
-    public float metallicMass { get => mass * metallicFraction; }
+    public float volitileMass { get => total * volitileFraction; }
+    public float lithicMass { get => total * lithicFraction; }
+    public float metallicMass { get => total * metallicFraction; }
 
     public MassFraction(float total, float volitileFraction, float lithicFraction, float metallicFraction)
     {
@@ -15,7 +15,7 @@ public struct MassFraction
         float totalFraction = volitileFraction + lithicFraction + metallicFraction;
         if(totalFraction == 0) totalFraction = 1;
 
-        this.mass = total;
+        this.total = total;
         this.volitileFraction = volitileFraction / totalFraction;
         this.lithicFraction = lithicFraction / totalFraction;
         this.metallicFraction = metallicFraction / totalFraction;
@@ -23,9 +23,9 @@ public struct MassFraction
 
     public MassFraction(float volitileMass, float lithicMass, float metallicMass)
     {
-        mass = volitileMass + lithicMass + metallicMass;
-        volitileFraction = volitileMass / mass;
-        lithicFraction = lithicMass / mass;
-        metallicFraction = metallicMass / mass;
+        total = volitileMass + lithicMass + metallicMass;
+        volitileFraction = volitileMass / total;
+        lithicFraction = lithicMass / total;
+        metallicFraction = metallicMass / total;
     }
 }

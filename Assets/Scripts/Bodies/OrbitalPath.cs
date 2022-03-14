@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class OrbitalPath : MonoBehaviour
 {
-    [SerializeField]
-    OrbitModel model;
+    public OrbitModel model;
     LineRenderer lineRenderer;
     public void Initialize(OrbitModel model)
     {
@@ -15,7 +14,7 @@ public class OrbitalPath : MonoBehaviour
         Redraw(32, ViewMode.Log);
     }
 
-    public PointMass GetPrimary()
+    public BarycenterModel GetPrimary()
     {
         return model.primary;
     }
@@ -28,11 +27,7 @@ public class OrbitalPath : MonoBehaviour
         List<Vector3> positions = new List<Vector3>();
         for(int i = 0; i < count; i++)
         {
-<<<<<<<< HEAD:Assets/Scripts/Worldspace/OrbitalPath.cs
-            positions.Add(model.GetRelativePositionAt(i*seg));
-========
-            positions.Add(model.GetPositionAt(i*seg, mode));
->>>>>>>> f5e686a005f683c51fa8766c32a632f5a15e0c83:Assets/Scripts/Bodies/OrbitalPath.cs
+            positions.Add(model.GetRelativePositionAtTime(i*seg));
         }
 
         lineRenderer.positionCount = count;
@@ -41,10 +36,6 @@ public class OrbitalPath : MonoBehaviour
 
     public Vector3 GetPostitionAt(float time, ViewMode mode)
     {
-<<<<<<<< HEAD:Assets/Scripts/Worldspace/OrbitalPath.cs
-        return model.GetRelativePositionAt(time);
-========
-        return model.GetPositionAt(time, mode);
->>>>>>>> f5e686a005f683c51fa8766c32a632f5a15e0c83:Assets/Scripts/Bodies/OrbitalPath.cs
+        return model.GetRelativePositionAtTime(time);
     }
 }
